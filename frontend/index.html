@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite + TS</title>
+</head>
+
+<body>
+  <div class="video-container">
+    <div class="video-wrapper">
+      <video id="video1" controls>
+        Your browser does not support the video tag.
+      </video>
+      <div class="controls">
+        <button id="video1-play">Play</button>
+        <span id="timeDisplay"></span>  
+      </div>
+      <button class="goal-button">Goal</button>
+    </div>
+
+    <div class="video-wrapper">
+      <video id="video2" controls>
+        Your browser does not support the video tag.
+      </video>
+      <div class="controls">
+        <button id="video2-play">Play</button>
+        <span id="timeDisplay"></span>  
+      </div>
+      <button class="goal-button">Goal</button>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>

@@ -7,3 +7,8 @@ Going to ignore chances and goals from set pieces, since I don't like them (and 
 Trying to get twice as many no-goals as goals, since more data is better and those are easier to find.
 
 I'd like to have 20 questions, so I'll have to find 20 goals. That's definitely good enough for an MVP. I can switch to looking through highlights as well, which might be easier.
+
+
+Need to show two videos side-by-side. There's a button beneath to say that it's a goal. We need to keep track of how many you got correct. When you pick your answer, it should show if you got it right, and you can watch the video forward.
+
+I'll have to add a seeding to the random so that different people can take the same quiz.
