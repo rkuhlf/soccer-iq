@@ -6,39 +6,42 @@ function choice<T>(list: T[]): T {
   return list[randomIndex];
 }
 
-function deepCopy<T>(obj: T): T {
-  return JSON.parse(JSON.stringify(obj));
-}
-
-let availableVideos = deepCopy(videoSources);
-
-// Returns a goal and a no-goal, not one that's been used before, from the same game.
-function getNextVideoPair(): { goal: string, noGoal: string } {
-  if (availableVideos.length == 0) {
-    alert("Ran out of clips. Clips will now be repeated.");
-    availableVideos = deepCopy(videoSources);
+function getVideoSources(goal: boolean): string[] {
+  let ret: string[] = [];
+  for (const match of videoSources) {
+    const sources = goal ? match.goal : match.noGoal;
+    ret = ret.concat(sources);
   }
-  const match = choice(availableVideos);
-  // If we picked one that had no options, we'll remove it and try again.
-  if (match.goal.length == 0 || match.noGoal.length == 0) {
-    availableVideos = availableVideos.filter(m => m != match);
-    return getNextVideoPair();
-  }
-
-  const ret = {
-    goal: choice(match.goal),
-    noGoal: choice(match.noGoal),
-  };
-
-  match.goal = match.goal.filter(g => g != ret.goal);
-  match.noGoal = match.noGoal.filter(ng => ng != ret.noGoal);
 
   return ret;
+}
+let availableGoals = getVideoSources(true);
+let availableNoGoals = getVideoSources(false);
+
+// Returns a goal and a no-goal, not one that's been used before, from the same game.
+function getNextVideo(): string {
+  if (Math.random() < 0.5) {
+    if (availableGoals.length == 0) {
+      alert("Ran out of clips. Clips will now be repeated.");
+      availableGoals = getVideoSources(true);  
+    }
+    const ret = choice(availableGoals);
+    availableGoals = availableGoals.filter(g => g != ret);
+    return ret;
+  } else {
+    if (availableNoGoals.length == 0) {
+      alert("Ran out of clips. Clips will now be repeated.");
+      availableNoGoals = getVideoSources(false);  
+    }
+    const ret = choice(availableNoGoals);
+    availableNoGoals = availableNoGoals.filter(g => g != ret);
+    return ret;
+  }
 }
 
 // Object so that I can change it by reference in the event listener callback. Probably should just go ahead and refactor the video to be a class at this point.
 const maxPlaybackTime = {
-  max_time: 9
+  max_time: 10
 }
 function setUpVideo(video: HTMLVideoElement, full: HTMLButtonElement) {
   video.removeAttribute('controls');
@@ -69,22 +72,12 @@ function setUpVideo(video: HTMLVideoElement, full: HTMLButtonElement) {
   video.addEventListener('click', togglePlaying);
 }
 
-function showNextVideo(video1: HTMLVideoElement, video2: HTMLVideoElement) {
-  // Get two different random videos
-  let nextVideos = getNextVideoPair();
+function showNextVideo(video: HTMLVideoElement) {
+  video.src = getNextVideo();
+  video.load();
+  video.play();
 
-  if (Math.random() < 0.5) {
-    video1.src = nextVideos.goal;
-    video2.src = nextVideos.noGoal;
-  } else {
-    video2.src = nextVideos.goal;
-    video1.src = nextVideos.noGoal;
-  }
-
-  video1.load();
-  video2.load();
-
-  maxPlaybackTime.max_time = 9;
+  maxPlaybackTime.max_time = 10;
 }
 
 function renderCount(correct: number, total: number) {
@@ -102,10 +95,10 @@ function renderCount(correct: number, total: number) {
 }
 
 function renderResult(correct: boolean) {
-  const result = document.querySelector<HTMLDivElement>('#result')!;
   const resultText = document.querySelector<HTMLButtonElement>('#result-text')!;
+  const bottom = document.querySelector<HTMLButtonElement>('.bottom')!;
 
-  result.classList.remove("hidden");
+  bottom.classList.remove("hidden");
   resultText.innerText = correct ? "Correct!" : "Incorrect.";
 
   maxPlaybackTime.max_time = 20;
@@ -113,54 +106,43 @@ function renderResult(correct: boolean) {
 
 document.addEventListener('DOMContentLoaded', function () {
   // Set up the videos.
-  const video1 = document.querySelector<HTMLVideoElement>('#video1')!;
-  const video2 = document.querySelector<HTMLVideoElement>('#video2')!;
-  const full1 = document.querySelector<HTMLButtonElement>("#video1-full")!;
-  const full2 = document.querySelector<HTMLButtonElement>("#video2-full")!;
+  const video = document.querySelector<HTMLVideoElement>('#video')!;
+  const full = document.querySelector<HTMLButtonElement>("#video-full")!;
 
-  setUpVideo(video1, full1);
-  setUpVideo(video2, full2);
-  showNextVideo(video1, video2);
+  setUpVideo(video, full);
+  showNextVideo(video);
 
   // Set up the goal button event listeners.
-  const goal1 = document.querySelector<HTMLButtonElement>('#goal1')!;
-  const goal2 = document.querySelector<HTMLButtonElement>('#goal2')!;
+  const options = document.querySelector<HTMLDivElement>('.options')!;
+  const goal = document.querySelector<HTMLButtonElement>('#goal')!;
+  const noGoal = document.querySelector<HTMLButtonElement>('#no-goal')!;
 
   let correctCount = 0;
   let totalCount = 0;
   renderCount(correctCount, totalCount);
 
-  function setUpGoalButton(button: HTMLButtonElement, primaryVideo: HTMLVideoElement) {
-    button.addEventListener("click", () => {
-      const correct = !primaryVideo.src.includes("no-goal")
-      if (correct) {
-        correctCount++;
-      }
-  
-      totalCount++;
-      renderCount(correctCount, totalCount);
-      renderResult(correct);
-      // Play the videos automatically, since people will probably want to do that.
-      video1.play();
-      video2.play();
+  function handleChoice(correct: boolean) {
+    if (correct) {
+      correctCount++;
+    }
 
-      // We don't want people to be able to change their answer.
-      goal1.classList.add("hidden");
-      goal2.classList.add("hidden");
-    });
+    totalCount++;
+    renderCount(correctCount, totalCount);
+    renderResult(correct);
+    video.play();
+
+    options.classList.add("hidden");
   }
-  
-  setUpGoalButton(goal1, video1);
-  setUpGoalButton(goal2, video2);
+  goal.addEventListener("click", () => handleChoice(!video.src.includes("no-goal")));
+  noGoal.addEventListener("click", () => handleChoice(video.src.includes("no-goal")));
 
   // Set up the result feedback.
-  const result = document.querySelector<HTMLDivElement>('#result')!;
   const nextButton = document.querySelector<HTMLButtonElement>('#next')!;
+  const bottom = document.querySelector<HTMLDivElement>('.bottom')!;
   nextButton.addEventListener("click", () => {
-    showNextVideo(video1, video2);
-    result.classList.add("hidden");
+    showNextVideo(video);
+    bottom.classList.add("hidden");
 
-    goal1.classList.remove("hidden");
-    goal2.classList.remove("hidden");
+    options.classList.remove("hidden");
   })
 });
