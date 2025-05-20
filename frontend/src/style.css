@@ -63,3 +63,7 @@ video::-webkit-media-controls-timeline-container {
     width: 0%;
     max-width: 100%;
 }
+
+.hidden {
+  display: none;
+}

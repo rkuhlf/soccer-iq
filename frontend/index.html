@@ -18,7 +18,7 @@
         <button id="video1-play">Play</button>
         <span id="timeDisplay"></span>  
       </div>
-      <button class="goal-button">Goal</button>
+      <button class="goal-button" id="goal1">Goal</button>
     </div>
 
     <div class="video-wrapper">
@@ -29,9 +29,18 @@
         <button id="video2-play">Play</button>
         <span id="timeDisplay"></span>  
       </div>
-      <button class="goal-button">Goal</button>
+      <button class="goal-button" id="goal2">Goal</button>
     </div>
   </div>
+
+  <div id="result" class="hidden">
+      <!-- Shows correct or incorrect. -->
+    <div id="result-text"></div>
+    <button id="next">Next</button>
+  </div>
+
+  <!-- Shows 11/20, for example -->
+  <div id="score"></div>
 
   <script type="module" src="/src/main.ts"></script>
 </body>

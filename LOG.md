@@ -12,3 +12,11 @@ I'd like to have 20 questions, so I'll have to find 20 goals. That's definitely 
 Need to show two videos side-by-side. There's a button beneath to say that it's a goal. We need to keep track of how many you got correct. When you pick your answer, it should show if you got it right, and you can watch the video forward.
 
 I'll have to add a seeding to the random so that different people can take the same quiz.
+
+
+
+
+Thinking that an abstraction wrapping the video element makes sense, because the playback controls and the video are tightly coupled.
+
+
+Dang it I've only got 19. I kinda wanted at least 20. Oh well I can do one more round of clips.
