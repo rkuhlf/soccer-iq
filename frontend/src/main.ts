@@ -40,13 +40,12 @@ function getNextVideoPair(): { goal: string, noGoal: string } {
 const maxPlaybackTime = {
   max_time: 9
 }
-function setUpVideo(video: HTMLVideoElement, playPause: HTMLButtonElement) {
+function setUpVideo(video: HTMLVideoElement, full: HTMLButtonElement) {
   video.removeAttribute('controls');
 
   video.addEventListener('timeupdate', function () {
     if (this.currentTime > maxPlaybackTime.max_time) {
       this.pause();
-      playPause.innerText = "Play";
     }
   });
 
@@ -59,18 +58,18 @@ function setUpVideo(video: HTMLVideoElement, playPause: HTMLButtonElement) {
   function togglePlaying() {
     if (video.paused) {
       video.play();
-      playPause.innerText = "Pause";
     } else {
       video.pause();
-      playPause.innerText = "Play";
     }
   }
 
-  playPause.addEventListener('click', togglePlaying);
+  full.addEventListener('click', () => {
+    video.requestFullscreen({navigationUI: 'hide'});
+  });
   video.addEventListener('click', togglePlaying);
 }
 
-function showNextVideo(video1: HTMLVideoElement, video2: HTMLVideoElement, playPause1: HTMLButtonElement, playPause2: HTMLButtonElement) {
+function showNextVideo(video1: HTMLVideoElement, video2: HTMLVideoElement) {
   // Get two different random videos
   let nextVideos = getNextVideoPair();
 
@@ -84,9 +83,6 @@ function showNextVideo(video1: HTMLVideoElement, video2: HTMLVideoElement, playP
 
   video1.load();
   video2.load();
-
-  playPause1.innerText = "Play";
-  playPause2.innerText = "Play";
 
   maxPlaybackTime.max_time = 9;
 }
@@ -119,12 +115,12 @@ document.addEventListener('DOMContentLoaded', function () {
   // Set up the videos.
   const video1 = document.querySelector<HTMLVideoElement>('#video1')!;
   const video2 = document.querySelector<HTMLVideoElement>('#video2')!;
-  const playPause1 = document.querySelector<HTMLButtonElement>("#video1-play")!;
-  const playPause2 = document.querySelector<HTMLButtonElement>("#video2-play")!;
+  const full1 = document.querySelector<HTMLButtonElement>("#video1-full")!;
+  const full2 = document.querySelector<HTMLButtonElement>("#video2-full")!;
 
-  setUpVideo(video1, playPause1);
-  setUpVideo(video2, playPause2);
-  showNextVideo(video1, video2, playPause1, playPause2);
+  setUpVideo(video1, full1);
+  setUpVideo(video2, full2);
+  showNextVideo(video1, video2);
 
   // Set up the goal button event listeners.
   const goal1 = document.querySelector<HTMLButtonElement>('#goal1')!;
@@ -146,9 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
       renderResult(correct);
       // Play the videos automatically, since people will probably want to do that.
       video1.play();
-      playPause1.innerText = "Pause";
       video2.play();
-      playPause2.innerText = "Pause";
 
       // We don't want people to be able to change their answer.
       goal1.classList.add("hidden");
@@ -163,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const result = document.querySelector<HTMLDivElement>('#result')!;
   const nextButton = document.querySelector<HTMLButtonElement>('#next')!;
   nextButton.addEventListener("click", () => {
-    showNextVideo(video1, video2, playPause1, playPause2);
+    showNextVideo(video1, video2);
     result.classList.add("hidden");
 
     goal1.classList.remove("hidden");

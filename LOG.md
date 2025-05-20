@@ -25,3 +25,5 @@ Need to allow the playback to go past the end.
 
 
 Okay last thing is to clean up the styles a teeny-weeny bit. And maybe add a full-screen button.
+
+It's really annoying not to be able to scroll or to navigate the video with the arrow keys.

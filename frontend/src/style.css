@@ -152,3 +152,9 @@ video::-webkit-media-controls-timeline-container {
   padding: 0;
   margin: 0;
 }
+
+
+#video1-full, #video2-full {
+  font-size: 1rem;
+  font-weight: bold;
+}
