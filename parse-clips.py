@@ -63,18 +63,20 @@ def main():
     generate_clips(args.video, timestamps, args.output)
 
 """
-python parse-clips.py ./raw-videos/barca-real.webm ./timestamps/barca-real-goals.txt --output ./clips/barca-real/goal ;
-python parse-clips.py ./raw-videos/barca-real.webm ./timestamps/barca-real-no-goals.txt --output ./clips/barca-real/no-goal ;
-python parse-clips.py ./raw-videos/barca-villareal.webm ./timestamps/barca-villareal-goals.txt --output ./clips/barca-villareal/goal ;
-python parse-clips.py ./raw-videos/barca-villareal.webm ./timestamps/barca-villareal-no-goals.txt --output ./clips/barca-villareal/no-goal ;
-python parse-clips.py ./raw-videos/sunderland-coventry.webm ./timestamps/sunderland-coventry-goals.txt --output ./clips/sunderland-coventry/goal ;
-python parse-clips.py ./raw-videos/sunderland-coventry.webm ./timestamps/sunderland-coventry-no-goals.txt --output ./clips/sunderland-coventry/no-goal ;
-python parse-clips.py ./raw-videos/birmingham-leeds.mkv ./timestamps/birmingham-leeds-goals.txt --output ./clips/birmingham-leeds/goal ;
-python parse-clips.py ./raw-videos/birmingham-leeds.mkv ./timestamps/birmingham-leeds-no-goals.txt --output ./clips/birmingham-leeds/no-goal ;
-python parse-clips.py ./raw-videos/portugal-spain.webm ./timestamps/portugal-spain-goals.txt --output ./clips/portugal-spain/goal ;
-python parse-clips.py ./raw-videos/portugal-spain.webm ./timestamps/portugal-spain-no-goals.txt --output ./clips/portugal-spain/no-goal ;
-python parse-clips.py ./raw-videos/watford-luton.webm ./timestamps/watford-luton-goals.txt --output ./clips/watford-luton/goal ;
-python parse-clips.py ./raw-videos/watford-luton.webm ./timestamps/watford-luton-no-goals.txt --output ./clips/watford-luton/no-goal
+python parse-clips.py ./raw-videos/barca-real.webm ./timestamps/barca-real-goals.txt --output ./frontend/public/clips/barca-real/goal ;
+python parse-clips.py ./raw-videos/barca-real.webm ./timestamps/barca-real-no-goals.txt --output ./frontend/public/clips/barca-real/no-goal ;
+python parse-clips.py ./raw-videos/barca-villareal.webm ./timestamps/barca-villareal-goals.txt --output ./frontend/public/clips/barca-villareal/goal ;
+python parse-clips.py ./raw-videos/barca-villareal.webm ./timestamps/barca-villareal-no-goals.txt --output ./frontend/public/clips/barca-villareal/no-goal ;
+python parse-clips.py ./raw-videos/sunderland-coventry.webm ./timestamps/sunderland-coventry-goals.txt --output ./frontend/public/clips/sunderland-coventry/goal ;
+python parse-clips.py ./raw-videos/sunderland-coventry.webm ./timestamps/sunderland-coventry-no-goals.txt --output ./frontend/public/clips/sunderland-coventry/no-goal ;
+python parse-clips.py ./raw-videos/birmingham-leeds.mkv ./timestamps/birmingham-leeds-goals.txt --output ./frontend/public/clips/birmingham-leeds/goal ;
+python parse-clips.py ./raw-videos/birmingham-leeds.mkv ./timestamps/birmingham-leeds-no-goals.txt --output ./frontend/public/clips/birmingham-leeds/no-goal ;
+python parse-clips.py ./raw-videos/portugal-spain.webm ./timestamps/portugal-spain-goals.txt --output ./frontend/public/clips/portugal-spain/goal ;
+python parse-clips.py ./raw-videos/portugal-spain.webm ./timestamps/portugal-spain-no-goals.txt --output ./frontend/public/clips/portugal-spain/no-goal ;
+python parse-clips.py ./raw-videos/watford-luton.webm ./timestamps/watford-luton-goals.txt --output ./frontend/public/clips/watford-luton/goal ;
+python parse-clips.py ./raw-videos/watford-luton.webm ./timestamps/watford-luton-no-goals.txt --output ./frontend/public/clips/watford-luton/no-goal
+python parse-clips.py ./raw-videos/inter-juventus.webm ./timestamps/inter-juventus-goals.txt --output ./frontend/public/clips/inter-juventus/goal ;
+python parse-clips.py ./raw-videos/inter-juventus.webm ./timestamps/inter-juventus-no-goals.txt --output ./frontend/public/clips/inter-juventus/no-goal
 """
 if __name__ == "__main__":
     main()

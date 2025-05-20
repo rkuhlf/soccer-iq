@@ -56,7 +56,7 @@ function setUpVideo(video: HTMLVideoElement, playPause: HTMLButtonElement) {
     }
   });
 
-  playPause.addEventListener('click', () => {
+  function togglePlaying() {
     if (video.paused) {
       video.play();
       playPause.innerText = "Pause";
@@ -64,7 +64,10 @@ function setUpVideo(video: HTMLVideoElement, playPause: HTMLButtonElement) {
       video.pause();
       playPause.innerText = "Play";
     }
-  });
+  }
+
+  playPause.addEventListener('click', togglePlaying);
+  video.addEventListener('click', togglePlaying);
 }
 
 function showNextVideo(video1: HTMLVideoElement, video2: HTMLVideoElement, playPause1: HTMLButtonElement, playPause2: HTMLButtonElement) {
@@ -99,7 +102,7 @@ function renderCount(correct: number, total: number) {
   const deviation = Math.sqrt(adjusted_total * p * (1 - p));
 
   const as_percent = (a: number) => Math.round(a * 100);
-  score.innerText = `${correct} / ${total} = ${as_percent(correct / total) || 0}% (± ${as_percent(deviation / adjusted_total)}%)`;
+  score.innerText = `Score: ${correct} / ${total} = ${as_percent(correct / total) || 0}% (± ${as_percent(deviation / adjusted_total)}%)`;
 }
 
 function renderResult(correct: boolean) {

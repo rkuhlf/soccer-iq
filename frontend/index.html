@@ -9,38 +9,51 @@
 </head>
 
 <body>
+  <div id="header">
+    <h2>Pick the Goal!</h2>
+    <p>One of these clips ends in a goal, one does not. Both pause about a second and a half before the shot is taken.</p>
+  </div>
   <div class="video-container">
     <div class="video-wrapper">
-      <video id="video1" controls>
-        Your browser does not support the video tag.
-      </video>
-      <div class="controls">
-        <button id="video1-play">Play</button>
-        <span id="timeDisplay"></span>  
+      <div class="video-with-controls">
+        <video id="video1" controls>
+          Your browser does not support the video tag.
+        </video>
+        <div class="controls">
+          <button id="video1-play">Play</button>
+        </div>
       </div>
       <button class="goal-button" id="goal1">Goal</button>
     </div>
 
     <div class="video-wrapper">
-      <video id="video2" controls>
-        Your browser does not support the video tag.
-      </video>
-      <div class="controls">
-        <button id="video2-play">Play</button>
-        <span id="timeDisplay"></span>  
+      <div class="video-with-controls">
+        <video id="video2" controls>
+          Your browser does not support the video tag.
+        </video>
+        <div class="controls">
+          <button id="video2-play">Play</button>
+        </div>
       </div>
       <button class="goal-button" id="goal2">Goal</button>
     </div>
   </div>
 
-  <div id="result" class="hidden">
-      <!-- Shows correct or incorrect. -->
-    <div id="result-text"></div>
+
+
+  <div class="bottom">
+    <div class="bottom-left">
+      <!-- Shows 11/20, for example -->
+      <div id="score"></div>
+
+      <div id="result" class="hidden">
+        <!-- Shows correct or incorrect. -->
+        <div id="result-text"></div>
+      </div>
+    </div>
+
     <button id="next">Next</button>
   </div>
-
-  <!-- Shows 11/20, for example -->
-  <div id="score"></div>
 
   <script type="module" src="/src/main.ts"></script>
 </body>

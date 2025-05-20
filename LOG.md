@@ -22,3 +22,6 @@ Thinking that an abstraction wrapping the video element makes sense, because the
 Dang it I've only got 19. I kinda wanted at least 20. Oh well I can do one more round of clips.
 
 Need to allow the playback to go past the end.
+
+
+Okay last thing is to clean up the styles a teeny-weeny bit. And maybe add a full-screen button.
