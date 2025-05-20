@@ -84,7 +84,16 @@ function showNextVideo(video1: HTMLVideoElement, video2: HTMLVideoElement, playP
 
 function renderCount(correct: number, total: number) {
   const score = document.querySelector<HTMLButtonElement>('#score')!;
-  score.innerText = `${correct} / ${total}`;
+
+  // I add one to the correct count and to the incorrect count because I saw it in that one 3B1B video that this can be helpful. I'm basically arbitrarily dragging you back towards 50%.
+  const adjusted_correct = correct + 1;
+  const adjusted_total = total + 2;
+  const p = adjusted_correct / adjusted_total;
+  // Use sqrt(np (1-p)), the deviation of the binomial formula, then divide by the total to make it a percent.
+  const deviation = Math.sqrt(adjusted_total * p * (1 - p));
+
+  const as_percent = (a: number) => Math.round(a * 100);
+  score.innerText = `${correct} / ${total} = ${as_percent(correct / total) || 0}% (± ${as_percent(deviation / adjusted_total)}%)`;
 }
 
 function renderResult(correct: boolean) {
