@@ -36,18 +36,22 @@ function getNextVideoPair(): { goal: string, noGoal: string } {
   return ret;
 }
 
-function setUpVideo(video: HTMLVideoElement, playPause: HTMLButtonElement, max_time: number) {
+// Object so that I can change it by reference in the event listener callback. Probably should just go ahead and refactor the video to be a class at this point.
+const maxPlaybackTime = {
+  max_time: 9
+}
+function setUpVideo(video: HTMLVideoElement, playPause: HTMLButtonElement) {
   video.removeAttribute('controls');
 
   video.addEventListener('timeupdate', function () {
-    if (this.currentTime > max_time) {
+    if (this.currentTime > maxPlaybackTime.max_time) {
       this.pause();
       playPause.innerText = "Play";
     }
   });
 
   video.addEventListener('play', function () {
-    if (this.currentTime > max_time) {
+    if (this.currentTime > maxPlaybackTime.max_time) {
       this.currentTime = 0;
     }
   });
@@ -80,6 +84,8 @@ function showNextVideo(video1: HTMLVideoElement, video2: HTMLVideoElement, playP
 
   playPause1.innerText = "Play";
   playPause2.innerText = "Play";
+
+  maxPlaybackTime.max_time = 9;
 }
 
 function renderCount(correct: number, total: number) {
@@ -102,6 +108,8 @@ function renderResult(correct: boolean) {
 
   result.classList.remove("hidden");
   resultText.innerText = correct ? "Correct!" : "Incorrect.";
+
+  maxPlaybackTime.max_time = 20;
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -111,8 +119,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const playPause1 = document.querySelector<HTMLButtonElement>("#video1-play")!;
   const playPause2 = document.querySelector<HTMLButtonElement>("#video2-play")!;
 
-  setUpVideo(video1, playPause1, 9);
-  setUpVideo(video2, playPause2, 9);
+  setUpVideo(video1, playPause1);
+  setUpVideo(video2, playPause2);
   showNextVideo(video1, video2, playPause1, playPause2);
 
   // Set up the goal button event listeners.
@@ -133,6 +141,11 @@ document.addEventListener('DOMContentLoaded', function () {
       totalCount++;
       renderCount(correctCount, totalCount);
       renderResult(correct);
+      // Play the videos automatically, since people will probably want to do that.
+      video1.play();
+      playPause1.innerText = "Pause";
+      video2.play();
+      playPause2.innerText = "Pause";
 
       // We don't want people to be able to change their answer.
       goal1.classList.add("hidden");
