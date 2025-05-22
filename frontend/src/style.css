@@ -12,13 +12,12 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   width: 100%;
   max-width: 140vh;
   padding: 0;
   margin: 0 auto;
-
-  padding: 10px
+  padding: 10px;
+  padding-top: 3vh;
 }
 
 .video-container {
@@ -78,17 +77,18 @@ video {
 }
 
 #goal {
-  background-color: #4CAF50;
+  background-color: oklch(54.6% 0.245 262.881);
   border-radius: 0 0 4px 0;
 }
 
 #goal:hover {
-  background-color: #45a049;
+  background-color: oklch(48.8% 0.243 264.376);
 }
 
 #no-goal {
-  background-color: #c47070;
+  background-color: oklch(37.2% 0.044 257.287);
   color: white;
+  /* color: black; */
   border: none;
   border-radius: 0 0 0 4px;
   cursor: pointer;
@@ -98,13 +98,14 @@ video {
 }
 
 #no-goal:hover {
-  background-color: #ae5d5d;
+  background-color: oklch(27.9% 0.041 260.031);
 }
 
 .bottom {
   width: 100%;
   display: flex;
   flex-direction: row;
+  height: 2rem;
 }
 
 #result-text {
@@ -149,7 +150,7 @@ video {
 
 
 .bottom button {
-  background-color: #63adcf;
+  background-color: oklch(54.6% 0.245 262.881);
   border-radius: 0 0 4px 4px;
   width: min-content;
   padding-left: 20px;
@@ -157,7 +158,7 @@ video {
 }
 
 .bottom button:hover {
-  background-color: #5d9ebe;
+  background-color: oklch(48.8% 0.243 264.376);
 }
 
 
@@ -209,13 +210,17 @@ video::-webkit-media-controls-timeline-container {
 }
 
 #header {
-  text-align: left;
+  text-align: center;
   margin-bottom: 0.5rem;
 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   gap: 10px;
+  width: 100%;
+}
+
+#title {
   width: 100%;
 }
 
@@ -242,3 +247,62 @@ video::-webkit-media-controls-timeline-container {
   width: 100%;
 }
 
+#score-meter {
+  background-color: oklch(97% 0.014 254.604);
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+}
+
+#correct-meter {
+  position: absolute;
+  left: 0;
+  /* top: 0; */
+  height: 5px;
+  bottom: 0;
+  width: 96%;
+  background-color: oklch(54.6% 0.245 262.881);
+
+}
+
+#score-count {
+  font-size: 0.75rem;
+}
+
+#correct-count {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+#total-count {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+#score-percent {
+  position: absolute;
+  right: 0.4rem;
+  text-wrap: nowrap;
+  font-size: 0.8rem;
+  background-color: white;
+  border: 2px solid oklch(70.7% 0.165 254.624);
+  border-radius: 200px;
+  padding: 5px 10px;
+}
+
+/* 
+oklch(97% 0.014 254.604)
+oklch(93.2% 0.032 255.585)
+oklch(88.2% 0.059 254.128)
+oklch(80.9% 0.105 251.813)
+oklch(70.7% 0.165 254.624)
+oklch(62.3% 0.214 259.815)
+oklch(54.6% 0.245 262.881)
+oklch(48.8% 0.243 264.376)
+oklch(42.4% 0.199 265.638)
+oklch(37.9% 0.146 265.522)
+oklch(28.2% 0.091 267.935)
+*/

@@ -81,7 +81,10 @@ function showNextVideo(video: HTMLVideoElement) {
 }
 
 function renderCount(correct: number, total: number) {
-  const score = document.querySelector<HTMLButtonElement>('#score')!;
+  const correctEl = document.querySelector<HTMLButtonElement>('#correct-count')!;
+  const totalEl = document.querySelector<HTMLButtonElement>('#total-count')!;
+  correctEl.innerText = correct.toString();
+  totalEl.innerText = total.toString();
 
   // I add one to the correct count and to the incorrect count because I saw it in that one 3B1B video that this can be helpful. I'm basically arbitrarily dragging you back towards 50%.
   const adjusted_correct = correct + 1;
@@ -91,7 +94,11 @@ function renderCount(correct: number, total: number) {
   const deviation = Math.sqrt(adjusted_total * p * (1 - p));
 
   const as_percent = (a: number) => Math.round(a * 100);
-  score.innerText = `${correct} of ${total} (${as_percent(correct / total) || 0}% ± ${as_percent(deviation / adjusted_total)}%)`;
+  const scorePercent = document.querySelector<HTMLButtonElement>('#score-percent')!;
+  scorePercent.innerText = `${as_percent(correct / total) || 0}% ± ${as_percent(deviation / adjusted_total)}%`;
+
+  const correctMeter = document.querySelector<HTMLButtonElement>('#correct-meter')!;
+  correctMeter.style.width = `${as_percent(correct / total) || 0}%`
 }
 
 function renderResult(isCorrect: boolean) {

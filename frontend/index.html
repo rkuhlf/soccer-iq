@@ -10,18 +10,28 @@
 
 <body>
   <div id="header">
-    <div>
+    <div id="title">
       <h2>Goal or No Goal!</h2>
       <p>Half of the clips end in goals, half in misses. Can you tell which is which?</p>
     </div>
 
-    <div class="score-container">
+    <div class="score-container hidden">
       <!-- Shows 11/20, for example -->
       <div id="score"></div>
     </div>
   </div>
 
   <div class="video-container">
+    <div id="score-meter">
+      <div id="correct-meter"></div>
+      <div id="score-count">
+        <span id="correct-count">13</span> out of <span id="total-count">40</span>
+      </div>
+      <div id="score-percent">
+        39%
+      </div>
+    </div>
+
     <div class="video-wrapper">
       <div class="video-with-controls">
         <video id="video" controls>
