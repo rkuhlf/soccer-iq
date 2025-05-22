@@ -28,13 +28,24 @@ Okay last thing is to clean up the styles a teeny-weeny bit. And maybe add a ful
 
 It's really annoying not to be able to scroll or to navigate the video with the arrow keys.
 
+
+Must do:
+
+Should do:
+- There should be a share button.
+
+Could do:
+- Would be nice to play a ding when you get something correct or incorrect.
+
+
 TODO:
 - Could add some hovering buttons overlayed on the video, they only show up when your cursor is moving on it and they go away after a little bit.
-- Need to add a bit more feedback when you get something correct or incorrect.
-    - Should play a ding if you get it right and an enk if you get it wrong.
 - Video should autoloop if you've allowed it to play to the end of the full clip after guessing.
+- Once you get to the first pause, it should show an overlay with some more instructions.
 - Want to add some metrics to see how far people are going and the percentages they get right.
-- There should be an overlay at the start to say "Click to play the video, then use the buttons below to guess whether it was a goal."
-- Need to make it sort of work on mobile.
+    - This can feed into the IQ thing.
+- There should be an IQ calculator.
+    - It should keep track of the historical best estimates for what the long-term correct proportion is for each user. Based on that, we can use some Bayesian statistics to determine what the best estimate for the long term correct proportion for this user is given the score that they just got.
+- It should show what the percentage guess was from past users.
 
 Colors are from https://tailwindcss.com/docs/colors

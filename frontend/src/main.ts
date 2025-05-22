@@ -6,6 +6,13 @@ function choice<T>(list: T[]): T {
   return list[randomIndex];
 }
 
+function hide(el: HTMLElement) {
+  el.classList.add('hidden');
+}
+
+function show(el: HTMLElement) {
+  el.classList.remove('hidden');
+}
 function getVideoSources(goal: boolean): string[] {
   let ret: string[] = [];
   for (const match of videoSources) {
@@ -22,14 +29,14 @@ let availableNoGoals = getVideoSources(false);
 function getNextVideo(): string {
   if (Math.random() < 0.5) {
     if (availableGoals.length == 0) {
-      availableGoals = getVideoSources(true);  
+      availableGoals = getVideoSources(true);
     }
     const ret = choice(availableGoals);
     availableGoals = availableGoals.filter(g => g != ret);
     return ret;
   } else {
     if (availableNoGoals.length == 0) {
-      availableNoGoals = getVideoSources(false);  
+      availableNoGoals = getVideoSources(false);
     }
     const ret = choice(availableNoGoals);
     availableNoGoals = availableNoGoals.filter(g => g != ret);
@@ -38,29 +45,42 @@ function getNextVideo(): string {
 }
 
 // Object so that I can change it by reference in the event listener callback. Probably should just go ahead and refactor the video to be a class at this point.
-const maxPlaybackTime = {
-  max_time: 10
+const videoState = {
+  max_time: 10,
+  // We keep track of this flag so we can autostart the video if you use the back arrow when you only paused because you reached the end.
+  paused_because_reached_end: false,
+  previously_shown_first_pause_overlay: false,
 }
 function setUpVideo(video: HTMLVideoElement) {
-  const overlay = document.querySelector<HTMLDivElement>("#overlay")!;
-  overlay.addEventListener('click', () => {
-    console.log("hidding');")
-    overlay.classList.add('hidden');
+  const firstOverlay = document.querySelector<HTMLDivElement>("#first-overlay")!;
+  firstOverlay.addEventListener('click', () => {
+    hide(firstOverlay);
     if (video.paused) {
       video.play();
     }
   });
 
-  video.removeAttribute('controls');
+  const secondOverlay = document.querySelector<HTMLDivElement>("#second-overlay")!;
+  hide(secondOverlay);
+  secondOverlay.addEventListener('click', () => {
+    hide(secondOverlay);
+  });
 
   video.addEventListener('timeupdate', function () {
-    if (this.currentTime > maxPlaybackTime.max_time) {
+    if (this.currentTime > videoState.max_time) {
       this.pause();
+      videoState.paused_because_reached_end = true;
+
+      if (!videoState.previously_shown_first_pause_overlay) {
+        videoState.previously_shown_first_pause_overlay = true;
+        show(secondOverlay);
+      }
     }
   });
 
   video.addEventListener('play', function () {
-    if (this.currentTime > maxPlaybackTime.max_time) {
+    videoState.paused_because_reached_end = false;
+    if (this.currentTime > videoState.max_time) {
       this.currentTime = 0;
     }
   });
@@ -73,10 +93,35 @@ function setUpVideo(video: HTMLVideoElement) {
     }
   }
 
-  // full.addEventListener('click', () => {
-  //   video.requestFullscreen({navigationUI: 'hide'});
-  // });
   video.addEventListener('click', togglePlaying);
+  document.addEventListener('keydown', e => {
+    // Check if spacebar is pressed (keyCode 32 or ' ')
+    const isSpacebar = e.key === ' ' || e.keyCode === 32;
+
+    // Check if the focused element is NOT a button, input, textarea, or select
+    const activeElement = document.activeElement;
+    const isFocusOnInteractiveElement = activeElement &&
+      (activeElement.tagName === 'BUTTON' ||
+        activeElement.tagName === 'INPUT' ||
+        activeElement.tagName === 'TEXTAREA' ||
+        activeElement.tagName === 'SELECT');
+
+    if (isSpacebar && !isFocusOnInteractiveElement) {
+      e.preventDefault();
+      togglePlaying();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      video.currentTime = Math.max(0, video.currentTime - 1);
+      if (video.paused && videoState.paused_because_reached_end) {
+        video.play();
+      }
+    } else if (e.key === 'ArrowRight') {
+      video.currentTime = Math.min(videoState.max_time, video.currentTime + 1);
+    }
+  });
 }
 
 function showNextVideo(video: HTMLVideoElement) {
@@ -84,7 +129,7 @@ function showNextVideo(video: HTMLVideoElement) {
   video.load();
   video.play();
 
-  maxPlaybackTime.max_time = 10;
+  videoState.max_time = 10;
 }
 
 function renderCount(correct: number, total: number) {
@@ -122,7 +167,7 @@ function renderResult(isCorrect: boolean) {
     incorrect.classList.remove("hidden");
   }
 
-  maxPlaybackTime.max_time = 20;
+  videoState.max_time = 20;
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -165,5 +210,32 @@ document.addEventListener('DOMContentLoaded', function () {
     bottom.classList.add("hidden");
 
     options.classList.remove("hidden");
-  })
+  });
+
+
+
+  const shareBtn = document.querySelector<HTMLButtonElement>('#shareBtn')!;
+  const shareText = document.querySelector('#shareText')!;
+
+  if (!navigator.share) {
+    hide(shareBtn);
+  }
+
+  const websiteUrl = 'https://footballiq.netlify.app';
+  const shareMessage = `I got ${correctCount} out of ${totalCount}. Think your football IQ is higher than mine? Check it out: ${websiteUrl}`;
+
+  shareText.textContent = shareMessage;
+  shareBtn.addEventListener('click', async () => {
+    if (navigator.share) {
+      // Use the Web Share API if available (mobile devices)
+      await navigator.share({
+        title: 'Football IQ Challenge',
+        text: shareMessage,
+        url: websiteUrl
+      });
+    }
+  });
 });
+
+
+

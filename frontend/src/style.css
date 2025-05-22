@@ -1,6 +1,6 @@
 :root {
   font-size: 1.5rem;
-  font-family: sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 * {
@@ -18,9 +18,10 @@ body {
   margin: 0 auto;
   padding: 10px;
   padding-top: 3vh;
+  padding-bottom: 5vh;
 }
 
-#overlay {
+.overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -36,7 +37,7 @@ body {
   overflow-y: auto;
 }
 
-#overlay-text {
+.overlay-text {
   width: 15rem;
   max-width: 90%;
   text-align: center;
@@ -340,3 +341,34 @@ oklch(42.4% 0.199 265.638)
 oklch(37.9% 0.146 265.522)
 oklch(28.2% 0.091 267.935)
 */
+
+
+
+
+.share-container {
+  text-align: center;
+  margin-top: 3vh;
+}
+
+.share-button {
+  color: white;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: oklch(55.4% 0.046 257.417);
+  text-decoration: underline;
+}
+
+.share-icon {
+  margin-right: 8px;
+  font-size: 18px;
+}
+
+.fallback-message { 
+  display: none;
+  margin-top: 10px;
+  color: #666;
+  font-size: 14px;
+}

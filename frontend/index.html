@@ -14,11 +14,6 @@
       <h2>Goal or Miss!</h2>
       <p>Half of the clips end in goals, half in misses. Can you tell which is which?</p>
     </div>
-
-    <div class="score-container hidden">
-      <!-- Shows 11/20, for example -->
-      <div id="score"></div>
-    </div>
   </div>
 
   <div class="video-container">
@@ -35,9 +30,14 @@
 
     <div class="video-wrapper">
       <div class="video-with-controls">
-        <div id="overlay">
-          <div id="overlay-text">
-            Click the video to play or pause it, then use the buttons below to guess whether it was a goal.
+        <div class="overlay" id="first-overlay">
+          <div class="overlay-text">
+            Click to play the clip, then use the buttons below to guess the outcome.
+          </div>
+        </div>
+        <div class="overlay" id="second-overlay">
+          <div class="overlay-text">
+            Click again to rewatch the full clip, or use the arrow keys to skip by a second.
           </div>
         </div>
         <video id="video" autoplay playsinline>
@@ -63,6 +63,24 @@
       <button id="next">Next</button>
     </div>
   </div>
+
+  <div class="share-container">
+    <button class="share-button" id="shareBtn">
+        📤 Challenge a Friend 📤 
+    </button>
+  </div>
+
+  <dialog id="shareDialog">
+    <div class="dialog-header">Challenge a Friend</div>
+    <div class="dialog-body">
+        <p class="dialog-message">Challenge your friends and see if they can beat you!</p>
+        <div class="share-text" id="shareText">I got 5 out of 5. Think your football IQ is higher than mine? Check it out: https://example.com</div>
+        <div class="dialog-actions">
+            <button class="dialog-button copy-button" id="copyBtn">Copy</button>
+            <button class="dialog-button close-button" id="closeBtn">Close</button>
+        </div>
+    </div>
+  </dialog>
 
   <script type="module" src="/src/main.ts"></script>
 </body>
