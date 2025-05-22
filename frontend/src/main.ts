@@ -41,7 +41,7 @@ function getNextVideo(): string {
 const maxPlaybackTime = {
   max_time: 10
 }
-function setUpVideo(video: HTMLVideoElement, full: HTMLButtonElement) {
+function setUpVideo(video: HTMLVideoElement) {
   video.removeAttribute('controls');
 
   video.addEventListener('timeupdate', function () {
@@ -64,9 +64,9 @@ function setUpVideo(video: HTMLVideoElement, full: HTMLButtonElement) {
     }
   }
 
-  full.addEventListener('click', () => {
-    video.requestFullscreen({navigationUI: 'hide'});
-  });
+  // full.addEventListener('click', () => {
+  //   video.requestFullscreen({navigationUI: 'hide'});
+  // });
   video.addEventListener('click', togglePlaying);
 }
 
@@ -119,9 +119,9 @@ function renderResult(isCorrect: boolean) {
 document.addEventListener('DOMContentLoaded', function () {
   // Set up the videos.
   const video = document.querySelector<HTMLVideoElement>('#video')!;
-  const full = document.querySelector<HTMLButtonElement>("#video-full")!;
+  // const full = document.querySelector<HTMLButtonElement>("#video-full")!;
 
-  setUpVideo(video, full);
+  setUpVideo(video);
   showNextVideo(video);
 
   // Set up the goal button event listeners.
