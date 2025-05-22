@@ -33,12 +33,14 @@ body {
   justify-content: center;
 
   z-index: 2;
+  overflow-y: scroll;
 }
 
 #overlay-text {
   width: 15rem;
-  max-width: 100%;
+  max-width: 90%;
   text-align: center;
+  font-size: 0.9rem;
 }
 
 .video-container {
