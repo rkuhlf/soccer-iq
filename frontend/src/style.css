@@ -44,6 +44,7 @@ video {
   width: 100%;
   height: auto;
   background-color: #000;
+  aspect-ratio: 16/9;
   /* Prevent hover preview in some browsers */
   /* pointer-events: none; */
   /* max-height: 80vh; */
