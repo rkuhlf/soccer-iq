@@ -29,13 +29,9 @@ Okay last thing is to clean up the styles a teeny-weeny bit. And maybe add a ful
 It's really annoying not to be able to scroll or to navigate the video with the arrow keys.
 
 TODO:
-- Need to add a bit of a loading thing when the video is loading in.
 - Could add some hovering buttons overlayed on the video, they only show up when your cursor is moving on it and they go away after a little bit.
 - Need to add a bit more feedback when you get something correct or incorrect.
-    - Should show a +1 to the score.
-    - Should have some checkmarks next to the correct, which should animate in (probably just a grow and maybe a shake).
     - Should play a ding if you get it right and an enk if you get it wrong.
-- Video should autoloop if you've allowed it to play to the end of the full clip.
+- Video should autoloop if you've allowed it to play to the end of the full clip after guessing.
 - Want to add some metrics to see how far people are going and the percentages they get right.
-- If you zoom out far enough, the score gets mis-aligned from the video.
 - There should be an overlay at the start to say "Click to play the video, then use the buttons below to guess whether it was a goal."

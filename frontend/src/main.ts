@@ -22,7 +22,6 @@ let availableNoGoals = getVideoSources(false);
 function getNextVideo(): string {
   if (Math.random() < 0.5) {
     if (availableGoals.length == 0) {
-      alert("Ran out of clips. Clips will now be repeated.");
       availableGoals = getVideoSources(true);  
     }
     const ret = choice(availableGoals);
@@ -30,7 +29,6 @@ function getNextVideo(): string {
     return ret;
   } else {
     if (availableNoGoals.length == 0) {
-      alert("Ran out of clips. Clips will now be repeated.");
       availableNoGoals = getVideoSources(false);  
     }
     const ret = choice(availableNoGoals);
