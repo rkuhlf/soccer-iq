@@ -35,6 +35,12 @@ body {
   z-index: 2;
 }
 
+#overlay-text {
+  width: 15rem;
+  max-width: 100%;
+  text-align: center;
+}
+
 .video-container {
   display: flex;
   justify-content: space-between;

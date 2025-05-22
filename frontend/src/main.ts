@@ -102,7 +102,7 @@ function renderCount(correct: number, total: number) {
 
   const as_percent = (a: number) => Math.round(a * 100);
   const scorePercent = document.querySelector<HTMLButtonElement>('#score-percent')!;
-  scorePercent.innerText = `${as_percent(correct / total) || 0}% ± ${as_percent(deviation / adjusted_total)}%`;
+  scorePercent.innerText = `${as_percent(correct / total) || 0}%`; // ± ${as_percent(deviation / adjusted_total)}%`;
 
   const correctMeter = document.querySelector<HTMLButtonElement>('#correct-meter')!;
   correctMeter.style.width = `${as_percent(correct / total) || 0}%`
