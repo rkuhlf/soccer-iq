@@ -12,7 +12,6 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
   height: 100vh;
   width: 100%;
   max-width: 140vh;
@@ -26,8 +25,13 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: fit-content;
   flex-direction: column;
+  width: 100%;
+
+  border-radius: 8px;
+  border: 1px solid #c4c3c3;
+  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+  overflow: hidden;
 }
 
 .video-wrapper {
@@ -46,14 +50,31 @@ video {
   /* max-height: 80vh; */
 }
 
+.video-with-controls {
+  position: relative;
+  width: 100%;
+}
+
+.video-with-controls video {
+    /* I think this is because the video element still accounts for the non-existent controls. */
+    margin-bottom: -6px;
+}
+
+.video-with-controls .controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
 #goal, #no-goal, .bottom button {
-  padding: 7px;
+  padding: 0.5rem;
   cursor: pointer;
   width: 100%;
   font-size: 0.8rem;
   margin: 0;
   color: white;
   border: none;
+  font-weight: bold;
 }
 
 #goal {
@@ -95,6 +116,37 @@ video {
   align-items: center;
   justify-content: center;
 }
+
+#correct-answer {
+    animation: correctAnswerAnimation 1s ease forwards;
+    color: #4CAF50; /* Green color for success */
+}
+
+@keyframes correctAnswerAnimation {
+  30% { transform: scale(1.2); }
+  40%, 60% { transform: rotate(-5deg) scale(1.2); }
+  50% { transform: rotate(5deg) scale(1.2); }
+  70% { transform: rotate(0deg) scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Optional: Add a checkmark icon */
+#correct-answer::before {
+  content: "✓";
+  display: inline-block;
+  margin-right: 8px;
+  animation: checkmarkBounce 0.5s ease-in-out;
+}
+
+@keyframes checkmarkBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 
 .bottom button {
   background-color: #63adcf;
@@ -148,21 +200,6 @@ video::-webkit-media-controls-timeline-container {
   width: 100%;
 }
 
-.video-with-controls {
-  position: relative;
-}
-
-.video-with-controls video {
-    /* I think this is because the video element still accounts for the non-existent controls. */
-    margin-bottom: -6px;
-}
-
-.video-with-controls .controls {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
-
 .score-container {
   display: flex;
   align-items: center;
@@ -173,7 +210,7 @@ video::-webkit-media-controls-timeline-container {
 
 #header {
   text-align: left;
-  margin-bottom: 10px;
+  margin-bottom: 0.5rem;
 
   display: flex;
   flex-direction: row;

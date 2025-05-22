@@ -91,15 +91,22 @@ function renderCount(correct: number, total: number) {
   const deviation = Math.sqrt(adjusted_total * p * (1 - p));
 
   const as_percent = (a: number) => Math.round(a * 100);
-  score.innerText = `Score: ${correct} / ${total} = ${as_percent(correct / total) || 0}% (± ${as_percent(deviation / adjusted_total)}%)`;
+  score.innerText = `${correct} of ${total} (${as_percent(correct / total) || 0}% ± ${as_percent(deviation / adjusted_total)}%)`;
 }
 
-function renderResult(correct: boolean) {
-  const resultText = document.querySelector<HTMLButtonElement>('#result-text')!;
+function renderResult(isCorrect: boolean) {
+  const correct = document.querySelector<HTMLDivElement>('#correct-answer')!;
+  const incorrect = document.querySelector<HTMLDivElement>('#incorrect-answer')!;
   const bottom = document.querySelector<HTMLButtonElement>('.bottom')!;
 
   bottom.classList.remove("hidden");
-  resultText.innerText = correct ? "Correct!" : "Incorrect.";
+  if (isCorrect) {
+    correct.classList.remove("hidden");
+    incorrect.classList.add("hidden");
+  } else {
+    correct.classList.add("hidden");
+    incorrect.classList.remove("hidden");
+  }
 
   maxPlaybackTime.max_time = 20;
 }
