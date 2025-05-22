@@ -94,11 +94,11 @@ function renderCount(correct: number, total: number) {
   totalEl.innerText = total.toString();
 
   // I add one to the correct count and to the incorrect count because I saw it in that one 3B1B video that this can be helpful. I'm basically arbitrarily dragging you back towards 50%.
-  const adjusted_correct = correct + 1;
-  const adjusted_total = total + 2;
-  const p = adjusted_correct / adjusted_total;
-  // Use sqrt(np (1-p)), the deviation of the binomial formula, then divide by the total to make it a percent.
-  const deviation = Math.sqrt(adjusted_total * p * (1 - p));
+  // const adjusted_correct = correct + 1;
+  // const adjusted_total = total + 2;
+  // const p = adjusted_correct / adjusted_total;
+  // // Use sqrt(np (1-p)), the deviation of the binomial formula, then divide by the total to make it a percent.
+  // const deviation = Math.sqrt(adjusted_total * p * (1 - p));
 
   const as_percent = (a: number) => Math.round(a * 100);
   const scorePercent = document.querySelector<HTMLButtonElement>('#score-percent')!;
