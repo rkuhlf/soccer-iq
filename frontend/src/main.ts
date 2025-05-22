@@ -42,6 +42,15 @@ const maxPlaybackTime = {
   max_time: 10
 }
 function setUpVideo(video: HTMLVideoElement) {
+  const overlay = document.querySelector<HTMLDivElement>("#overlay")!;
+  overlay.addEventListener('click', () => {
+    console.log("hidding');")
+    overlay.classList.add('hidden');
+    if (video.paused) {
+      video.play();
+    }
+  });
+
   video.removeAttribute('controls');
 
   video.addEventListener('timeupdate', function () {
