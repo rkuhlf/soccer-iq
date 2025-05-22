@@ -35,3 +35,6 @@ TODO:
 - Video should autoloop if you've allowed it to play to the end of the full clip after guessing.
 - Want to add some metrics to see how far people are going and the percentages they get right.
 - There should be an overlay at the start to say "Click to play the video, then use the buttons below to guess whether it was a goal."
+- Need to make it sort of work on mobile.
+
+Colors are from https://tailwindcss.com/docs/colors

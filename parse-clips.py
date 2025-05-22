@@ -77,6 +77,8 @@ python parse-clips.py ./raw-videos/watford-luton.webm ./timestamps/watford-luton
 python parse-clips.py ./raw-videos/watford-luton.webm ./timestamps/watford-luton-no-goals.txt --output ./frontend/public/clips/watford-luton/no-goal
 python parse-clips.py ./raw-videos/inter-juventus.webm ./timestamps/inter-juventus-goals.txt --output ./frontend/public/clips/inter-juventus/goal ;
 python parse-clips.py ./raw-videos/inter-juventus.webm ./timestamps/inter-juventus-no-goals.txt --output ./frontend/public/clips/inter-juventus/no-goal
+python parse-clips.py ./raw-videos/arsenal-man-u.mp4 ./timestamps/arsenal-man-u-goals.txt --output ./frontend/public/clips/arsenal-man-u/goal ;
+python parse-clips.py ./raw-videos/arsenal-man-u.mp4 ./timestamps/arsenal-man-u-no-goals.txt --output ./frontend/public/clips/arsenal-man-u/no-goal
 """
 if __name__ == "__main__":
     main()

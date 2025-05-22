@@ -1,6 +1,32 @@
 export const videoSources = [
   {
     "goal": [
+      "./clips/arsenal-man-u/goal_01_18-52.mp4",
+      "./clips/arsenal-man-u/goal_02_25-11.mp4",
+      "./clips/arsenal-man-u/goal_03_56-46.mp4",
+      "./clips/arsenal-man-u/goal_04_1-02-55.mp4",
+      "./clips/arsenal-man-u/goal_05_1-33-40.mp4"
+    ],
+    "noGoal": [
+      "./clips/arsenal-man-u/no-goal_01_3-39.mp4",
+      "./clips/arsenal-man-u/no-goal_03_7-57.mp4",
+      "./clips/arsenal-man-u/no-goal_04_10-39.mp4",
+      "./clips/arsenal-man-u/no-goal_05_11-49.mp4",
+      "./clips/arsenal-man-u/no-goal_06_22-54.mp4",
+      "./clips/arsenal-man-u/no-goal_07_29-55.mp4",
+      "./clips/arsenal-man-u/no-goal_08_47-15.mp4",
+      "./clips/arsenal-man-u/no-goal_09_48-48.mp4",
+      "./clips/arsenal-man-u/no-goal_10_53-25.mp4",
+      "./clips/arsenal-man-u/no-goal_11_55-59.mp4",
+      "./clips/arsenal-man-u/no-goal_12_59-21.mp4",
+      "./clips/arsenal-man-u/no-goal_13_1-07-24.mp4",
+      "./clips/arsenal-man-u/no-goal_15_1-09-49.mp4",
+      "./clips/arsenal-man-u/no-goal_16_1-14-02.mp4",
+      "./clips/arsenal-man-u/no-goal_17_1-28-15.mp4"
+    ]
+  },
+  {
+    "goal": [
       "./clips/barca-real/goal_01_5-29.mp4",
       "./clips/barca-real/goal_02_6-30.mp4",
       "./clips/barca-real/goal_03_14-50.mp4",

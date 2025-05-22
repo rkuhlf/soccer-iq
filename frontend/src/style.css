@@ -257,6 +257,16 @@ video::-webkit-media-controls-timeline-container {
   padding: 0.75rem;
 }
 
+#background-meter {
+  position: absolute;
+  left: 0;
+  /* top: 0; */
+  height: 5px;
+  bottom: 0;
+  width: 100%;
+  background-color: oklch(55.4% 0.046 257.417);
+}
+
 #correct-meter {
   position: absolute;
   left: 0;
@@ -265,7 +275,6 @@ video::-webkit-media-controls-timeline-container {
   bottom: 0;
   width: 96%;
   background-color: oklch(54.6% 0.245 262.881);
-
 }
 
 #score-count {
