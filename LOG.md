@@ -30,9 +30,16 @@ It's really annoying not to be able to scroll or to navigate the video with the 
 
 
 Must do:
+- gonna add analytics
+- Gonna add a recording of all of the answers that are received.
+    - Fields:
+        - Timestamp
+        - What the clip was.
+        - What the answer was.
+        - What the session ID was.
+    - These should just get stuffed into a database so that later I can re-do the data analysis. This should also be enough to tell what the percentages are for a given clip.
 
 Should do:
-- There should be a share button.
 
 Could do:
 - Would be nice to play a ding when you get something correct or incorrect.
@@ -49,3 +56,4 @@ TODO:
 - It should show what the percentage guess was from past users.
 
 Colors are from https://tailwindcss.com/docs/colors
+Hosting analytics at https://console.firebase.google.com/u/1/?pli=1 (rilstarssun)

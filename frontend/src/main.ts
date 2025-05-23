@@ -1,3 +1,4 @@
+import { initializeAnalytics } from './analytics.ts';
 import './style.css'
 import { videoSources } from './video-sources.ts';
 
@@ -171,6 +172,8 @@ function renderResult(isCorrect: boolean) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+  initializeAnalytics();
+  
   // Set up the videos.
   const video = document.querySelector<HTMLVideoElement>('#video')!;
   // const full = document.querySelector<HTMLButtonElement>("#video-full")!;
