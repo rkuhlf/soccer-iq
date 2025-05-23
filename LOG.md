@@ -38,6 +38,7 @@ Must do:
         - What the answer was.
         - What the session ID was.
     - These should just get stuffed into a database so that later I can re-do the data analysis. This should also be enough to tell what the percentages are for a given clip.
+- Leeds fifth goal is literally in the net when it gets paused. Just moved it a second back but I need to regen the clips.
 
 Should do:
 
@@ -61,3 +62,11 @@ Hosting analytics at https://console.firebase.google.com/u/1/?pli=1 (rilstarssun
 
 Trying to find a database provider. I can use the netlify functions for free, so I just need sombody who's willing to provide a sqlite file.
 I think that python-anywhere might be the move. I think I already have a process running on it. Either that or just hosting a database locally on some old computer which would be fun.
+
+I think I can just use cloud firestore. I get a Gigibyte of storage which should really be enough.
+I can also be a bit weird and just make the appropriate database calls from the client. That exposes all kinds of exploits (not requiring authentication to use the database) but whatever idc.
+Currently, the firebase app is set to allow anyone to write. I should move it into a netlify function so that I can at least restrict it to users of this website and I can guarantee nobody pulls up and deletes the whole database because only my netlify functions can access it.
+
+
+Bimingham-leeds 1-2 cross needs to be moved back by a second.
+

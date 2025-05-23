@@ -1,10 +1,14 @@
-import { initializeAnalytics } from './analytics.ts';
+import { Firebase } from './firebase.ts';
 import './style.css'
 import { videoSources } from './video-sources.ts';
 
 function choice<T>(list: T[]): T {
   const randomIndex = Math.floor(Math.random() * list.length);
   return list[randomIndex];
+}
+
+function everythingAfter(str: string, after: string): string {
+  return str.substring(str.indexOf(after) + after.length);
 }
 
 function hide(el: HTMLElement) {
@@ -172,7 +176,7 @@ function renderResult(isCorrect: boolean) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  initializeAnalytics();
+  const firebase = new Firebase();
   
   // Set up the videos.
   const video = document.querySelector<HTMLVideoElement>('#video')!;
@@ -191,16 +195,19 @@ document.addEventListener('DOMContentLoaded', function () {
   renderCount(correctCount, totalCount);
 
   function handleChoice(correct: boolean) {
+    // Update UI.
     if (correct) {
       correctCount++;
     }
-
     totalCount++;
     renderCount(correctCount, totalCount);
     renderResult(correct);
     video.play();
 
     options.classList.add("hidden");
+
+    // Update database.
+    firebase.recordResponse(everythingAfter(video.src, "clips/"), correct);
   }
   goal.addEventListener("click", () => handleChoice(!video.src.includes("no-goal")));
   noGoal.addEventListener("click", () => handleChoice(video.src.includes("no-goal")));
