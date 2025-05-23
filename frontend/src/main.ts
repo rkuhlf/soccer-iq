@@ -228,23 +228,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   const shareBtn = document.querySelector<HTMLButtonElement>('#shareBtn')!;
-  const shareText = document.querySelector('#shareText')!;
 
   if (!navigator.share) {
     hide(shareBtn);
   }
 
-  const websiteUrl = 'https://footballiq.netlify.app';
-  const shareMessage = `I got ${correctCount} out of ${totalCount}. Think your football IQ is higher than mine? Check it out: ${websiteUrl}`;
-
-  shareText.textContent = shareMessage;
   shareBtn.addEventListener('click', async () => {
     if (navigator.share) {
       // Use the Web Share API if available (mobile devices)
       await navigator.share({
         title: 'Football IQ Challenge',
-        text: shareMessage,
-        url: websiteUrl
+        text: `I got ${correctCount} out of ${totalCount}. Think your football IQ is higher than mine?`,
+        url: 'https://footballiq.netlify.app'
       });
     }
   });
