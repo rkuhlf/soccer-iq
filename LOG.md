@@ -57,3 +57,7 @@ TODO:
 
 Colors are from https://tailwindcss.com/docs/colors
 Hosting analytics at https://console.firebase.google.com/u/1/?pli=1 (rilstarssun)
+
+
+Trying to find a database provider. I can use the netlify functions for free, so I just need sombody who's willing to provide a sqlite file.
+I think that python-anywhere might be the move. I think I already have a process running on it. Either that or just hosting a database locally on some old computer which would be fun.
