@@ -79,6 +79,9 @@ function setUpVideo(video: HTMLVideoElement) {
       if (!videoState.previously_shown_first_pause_overlay) {
         videoState.previously_shown_first_pause_overlay = true;
         show(secondOverlay);
+
+        const options = document.querySelector<HTMLDivElement>('.options')!;
+        show(options);
       }
     }
   });

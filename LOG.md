@@ -68,5 +68,6 @@ I can also be a bit weird and just make the appropriate database calls from the 
 Currently, the firebase app is set to allow anyone to write. I should move it into a netlify function so that I can at least restrict it to users of this website and I can guarantee nobody pulls up and deletes the whole database because only my netlify functions can access it.
 
 
-Bimingham-leeds 1-2 cross needs to be moved back by a second.
+Okay I'm gonna add another video in here and then maybe I can have some of the Kuhlman clan test it out to get some more data. It would be nice to show some percentages, and I don't think that would be all that difficult. However, it's really the kind of thing that should be done in a worker that runs very rarely, parsing through all of the data in the database. It would build a new collection.
 
+Then, we would just have to make a query as soon as the video loads to ask what the goal-percentage that people guess is.
