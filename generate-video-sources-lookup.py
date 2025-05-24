@@ -1,8 +1,8 @@
 import os
 import json
 
-def generate_js_array(folder_path):
-    js_array = []
+def generate_ts_array(folder_path):
+    ts_array = []
     
     # Iterate through each subfolder in the given directory
     for subfolder in sorted(os.listdir(folder_path)):
@@ -28,25 +28,29 @@ def generate_js_array(folder_path):
                 'goal': goal_files,
                 'noGoal': no_goal_files
             }
-            js_array.append(subfolder_obj)
+            ts_array.append(subfolder_obj)
     
     # Convert to JavaScript code
-    js_code = f"const videoSources = {json.dumps(js_array, indent=2)};"
-    return js_code
+    ts_code = f"export const videoSources = {json.dumps(ts_array, indent=2)};"
+    return ts_code
 
 
 """
-python generate-video-sources-lookup.py ./frontend/public/clips
+python generate-video-sources-lookup.py ./frontend/public/clips ./frontend/src/video-sources.ts
 """
 if __name__ == "__main__":
     import argparse
     
     parser = argparse.ArgumentParser(description='Generate JavaScript array from folder structure.')
     parser.add_argument('folder', help='Path to the root folder containing subfolders')
+    parser.add_argument('output', help='Path to the typescript file to write the video sources to')
     args = parser.parse_args()
     
     if os.path.isdir(args.folder):
-        js_code = generate_js_array(args.folder)
-        print(js_code)
+        ts_code = generate_ts_array(args.folder)
+        with open(args.output, "w") as f:
+            f.write(ts_code)
+        
+        print(ts_code)
     else:
         print(f"Error: {args.folder} is not a valid directory")

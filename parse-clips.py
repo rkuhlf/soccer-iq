@@ -12,6 +12,10 @@ def parse_timestamp(ts_str):
         elif ts_str.count(':') == 1:
             minutes, seconds = map(float, ts_str.split(':'))
             hours = 0
+        elif ts_str.count(':') == 0:
+            hours = 0
+            minutes = 0
+            seconds = float(ts_str)
         else:
             raise ValueError("Invalid timestamp format")
         
@@ -79,6 +83,8 @@ python parse-clips.py ./raw-videos/inter-juventus.webm ./timestamps/inter-juvent
 python parse-clips.py ./raw-videos/inter-juventus.webm ./timestamps/inter-juventus-no-goals.txt --output ./frontend/public/clips/inter-juventus/no-goal
 python parse-clips.py ./raw-videos/arsenal-man-u.mp4 ./timestamps/arsenal-man-u-goals.txt --output ./frontend/public/clips/arsenal-man-u/goal ;
 python parse-clips.py ./raw-videos/arsenal-man-u.mp4 ./timestamps/arsenal-man-u-no-goals.txt --output ./frontend/public/clips/arsenal-man-u/no-goal
+python parse-clips.py ./raw-videos/man-city-liverpool.mp4 ./timestamps/man-city-liverpool-goals.txt --output ./frontend/public/clips/man-city-liverpool/goal ;
+python parse-clips.py ./raw-videos/man-city-liverpool.mp4 ./timestamps/man-city-liverpool-no-goals.txt --output ./frontend/public/clips/man-city-liverpool/no-goal
 """
 if __name__ == "__main__":
     main()

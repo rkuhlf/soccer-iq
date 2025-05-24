@@ -69,6 +69,7 @@ export const videoSources = [
       "./clips/birmingham-leeds/goal_04_1-16-30.mp4",
       "./clips/birmingham-leeds/goal_05_1-32-15.mp4",
       "./clips/birmingham-leeds/goal_06_1-38-46.mp4",
+      "./clips/birmingham-leeds/goal_07_1-42-28.mp4",
       "./clips/birmingham-leeds/goal_07_1-42-29.mp4"
     ],
     "noGoal": [
@@ -108,6 +109,28 @@ export const videoSources = [
       "./clips/inter-juventus/no-goal_10_16-22.mp4",
       "./clips/inter-juventus/no-goal_11_18-04.mp4",
       "./clips/inter-juventus/no-goal_13_19-17.mp4"
+    ]
+  },
+  {
+    "goal": [
+      "./clips/man-city-liverpool/goal_01_4270.57.mp4",
+      "./clips/man-city-liverpool/goal_02_4053.64.mp4",
+      "./clips/man-city-liverpool/goal_03_4505.23.mp4"
+    ],
+    "noGoal": [
+      "./clips/man-city-liverpool/no-goal_01_1123.91.mp4",
+      "./clips/man-city-liverpool/no-goal_02_1503.42.mp4",
+      "./clips/man-city-liverpool/no-goal_03_1730.18.mp4",
+      "./clips/man-city-liverpool/no-goal_04_2038.57.mp4",
+      "./clips/man-city-liverpool/no-goal_05_2447.01.mp4",
+      "./clips/man-city-liverpool/no-goal_06_2899.28.mp4",
+      "./clips/man-city-liverpool/no-goal_07_3392.47.mp4",
+      "./clips/man-city-liverpool/no-goal_08_3591.75.mp4",
+      "./clips/man-city-liverpool/no-goal_09_3742.97.mp4",
+      "./clips/man-city-liverpool/no-goal_10_3985.18.mp4",
+      "./clips/man-city-liverpool/no-goal_11_5117.52.mp4",
+      "./clips/man-city-liverpool/no-goal_12_5237.19.mp4",
+      "./clips/man-city-liverpool/no-goal_13_5631.2.mp4"
     ]
   },
   {
